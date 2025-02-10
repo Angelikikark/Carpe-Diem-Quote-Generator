@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Carpe Diem - Seize the Day</title>
+    <style>
+      body {
+        font-family: "Arial", sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background: linear-gradient(to right, #d68bec, #976094);
+        color: white;
+        text-align: center;
+        flex-direction: column;
+      }
+
+      .container {
+        max-width: 600px;
+        padding: 20px;
+        background: rgba(0, 0, 0, 0.5);
+        border-radius: 15px;
+        box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.3);
+      }
+
+      h1 {
+        font-size: 2.5rem;
+        font-weight: bold;
+        text-transform: uppercase;
+      }
+
+      p {
+        font-size: 1.2rem;
+        margin: 10px 0;
+      }
+
+      button {
+        padding: 10px 20px;
+        font-size: 1rem;
+        border: none;
+        background: #f7acf7;
+        color: black;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 15px;
+        transition: 0.3s;
+      }
+
+      button:hover {
+        background: #f194da;
+      }
+
+      #message {
+        display: none;
+        font-style: italic;
+        margin-top: 10px;
+        font-size: 1.1rem;
+        opacity: 0;
+        transition: opacity 0.5s;
+      }
+
+      img {
+        width: 100%;
+        max-width: 600px;
+        height: auto;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Carpe Diem</h1>
+      <p>– Seize the Day</p>
+      <p id="quote">Click the button to get inspired!</p>
+      <button onclick="generateQuote()">Get a New Quote</button>
+      <p id="message"></p>
+    </div>
+
+    <script>
+      const quotes = [
+        "Make today count! Step outside your comfort zone and create unforgettable moments.",
+        "Do what you can, with what you have, where you are.",
+        "The best way to predict the future is to create it.",
+        "Dream big and dare to fail.",
+        "Every moment is a fresh beginning.",
+        "Your time is limited, so don’t waste it living someone else’s life.",
+      ];
+
+      function generateQuote() {
+        const randomIndex = Math.floor(Math.random() * quotes.length);
+        const message = document.getElementById("message");
+        message.textContent = quotes[randomIndex];
+        message.style.display = "block";
+        message.style.opacity = "1";
+      }
+    </script>
+  </body>
+</html>
