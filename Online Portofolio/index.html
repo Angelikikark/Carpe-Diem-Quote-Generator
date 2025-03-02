@@ -136,7 +136,6 @@
       transform: scale(1.05);
     }
 
-    /* Animated Section Transitions */
     section {
       opacity: 0;
       transform: translateY(30px);
@@ -145,6 +144,28 @@
     .visible {
       opacity: 1;
       transform: translateY(0);
+    }
+
+    #backToTop {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      background: linear-gradient(45deg, #af4f92, #af4f92);
+      color: rgb(248, 245, 245);
+      padding: 12px 18px;
+      border: none;
+      border-radius: 50px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+      transition: all 0.3s ease-in-out;
+      box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+      z-index: 1000;
+    }
+    #backToTop:hover {
+      background: linear-gradient(45deg, #af4f92, #af4f92);
+      transform: scale(1.1);
     }
   </style>
 
@@ -359,6 +380,7 @@
         <p><a href="https://github.com/Angelikikark">GitHub</a></p>
         <p>Email: aggelikikark@gmail.com</p>
       </section>
+      <button id="backToTop" onclick="scrollToTop()">↑ Top</button>
 
       <footer>
         <p>© 2025 Coded by Angeliki Karkampasi</p>
@@ -385,7 +407,6 @@
           });
         }
 
-        /* Section Fade-in Effect */
         document.addEventListener("DOMContentLoaded", function () {
           const sections = document.querySelectorAll("section");
           const observer = new IntersectionObserver(
@@ -403,6 +424,34 @@
             observer.observe(section);
           });
         });
+
+        window.onscroll = function () {
+          let btn = document.getElementById("backToTop");
+          if (document.documentElement.scrollTop > 200) {
+            btn.style.display = "block";
+          } else {
+            btn.style.display = "none";
+          }
+        };
+        function scrollToTop() {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }
+
+        document
+          .getElementById("contactForm")
+          .addEventListener("submit", function (event) {
+            event.preventDefault();
+            let name = document.getElementById("name").value;
+            let email = document.getElementById("email").value;
+            let message = document.getElementById("message").value;
+            if (name && email && message) {
+              document.getElementById("formMessage").innerText =
+                "Thank you for your message!";
+            } else {
+              document.getElementById("formMessage").innerText =
+                "Please fill out all fields.";
+            }
+          });
       </script>
     </body>
   </body>
