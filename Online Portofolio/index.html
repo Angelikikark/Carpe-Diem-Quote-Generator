@@ -27,6 +27,7 @@
 
     body {
       font-family: "DM Serif Text", serif;
+      scroll-behavior: smooth;
       margin: 0;
       padding: 0;
       background-color: #f4f4f4;
@@ -118,6 +119,32 @@
       background: rgba(0, 0, 0, 0.5);
       display: none;
       z-index: 999;
+    }
+
+    /* Profile Image Glow Effect */
+    .profile-image {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      display: block;
+      margin: 10px auto;
+      object-fit: cover;
+      box-shadow: 0px 0px 15px rgba(194, 161, 178, 0.8);
+      transition: transform 0.3s ease-in-out;
+    }
+    .profile-image:hover {
+      transform: scale(1.05);
+    }
+
+    /* Animated Section Transitions */
+    section {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+    }
+    .visible {
+      opacity: 1;
+      transform: translateY(0);
     }
   </style>
 
@@ -346,6 +373,36 @@
           document.getElementById("popupOverlay").style.display = "none";
           document.getElementById("welcomePopup").style.display = "none";
         }
+
+        function filterProjects(category) {
+          let projects = document.querySelectorAll(".project");
+          projects.forEach((project) => {
+            if (category === "all" || project.classList.contains(category)) {
+              project.classList.remove("hidden");
+            } else {
+              project.classList.add("hidden");
+            }
+          });
+        }
+
+        /* Section Fade-in Effect */
+        document.addEventListener("DOMContentLoaded", function () {
+          const sections = document.querySelectorAll("section");
+          const observer = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  entry.target.classList.add("visible");
+                }
+              });
+            },
+            { threshold: 0.2 }
+          );
+
+          sections.forEach((section) => {
+            observer.observe(section);
+          });
+        });
       </script>
     </body>
   </body>
